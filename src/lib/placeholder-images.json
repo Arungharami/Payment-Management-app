@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "pepsi",
+      "description": "Pepsi logo",
+      "imageUrl": "https://images.unsplash.com/photo-1758560902402-0785e1ff77db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxQZXBzaSUyMGxvZ298ZW58MHx8fHwxNzYxNTA3ODA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Pepsi logo"
+    },
+    {
+      "id": "coca-cola",
+      "description": "Coca-Cola logo",
+      "imageUrl": "https://images.unsplash.com/photo-1643585222130-4855704b8a5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxDb2NhLUNvbGElMjBsb2dvfGVufDB8fHx8MTc2MTUwNzgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Coca-Cola logo"
+    },
+    {
+      "id": "rndc",
+      "description": "RNDC logo",
+      "imageUrl": "https://images.unsplash.com/photo-1728406970302-8be1af6bda4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxSTkRDJTIwbG9nb3xlbnwwfHx8fDE3NjE1MDc4MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "RNDC logo"
+    },
+    {
+      "id": "southern-glazers",
+      "description": "Southern Glazer's logo",
+      "imageUrl": "https://images.unsplash.com/photo-1751263317332-7368f7e98a91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxTb3V0aGVybiUyMEdsYXplciUyN3MlMjBsb2dvfGVufDB8fHx8MTc2MTUwNzgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Southern Glazer's logo"
+    },
+    {
+      "id": "breakthru",
+      "description": "Breakthru Beverage logo",
+      "imageUrl": "https://images.unsplash.com/photo-1573159312725-4dab0e8046f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxCcmVha3RocnUlMjBCZXZlcmFnZSUyMGxvZ298ZW58MHx8fHwxNzYxNTA3ODA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Breakthru Beverage logo"
+    },
+    {
+      "id": "user-avatar",
+      "description": "User avatar",
+      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjE0Mzg3NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    }
+  ]
 }
