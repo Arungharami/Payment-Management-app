@@ -4,6 +4,7 @@ import { detectFraud } from '@/ai/flows/fraud-detection';
 import { z } from 'zod';
 
 const AddVendorSchema = z.object({
+  storeId: z.string().min(1, { message: 'Please select a store.' }),
   vendorName: z.string().min(2, { message: 'Vendor name must be at least 2 characters.' }),
   paymentAmount: z.coerce.number().positive({ message: 'Please enter a valid amount.' }),
   vendorHistory: z.string().optional(),
@@ -54,7 +55,7 @@ export async function addVendorAction(prevState: FormState, data: FormData): Pro
     }
 
     // In a real app, you would save the vendor to the database here.
-    // await saveVendor(parsed.data);
+    // await saveVendorToStore(parsed.data.storeId, parsed.data);
 
     return {
       message: `${parsed.data.vendorName} added successfully.`,

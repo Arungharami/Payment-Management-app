@@ -7,6 +7,8 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { File } from 'lucide-react';
 
 export default function HistoryPage() {
   return (
@@ -16,7 +18,12 @@ export default function HistoryPage() {
         <PageHeader
           title="Payment History"
           description="Review all your past vendor payments."
-        />
+        >
+            <Button>
+                <File className="mr-2 h-4 w-4" />
+                Generate Report
+            </Button>
+        </PageHeader>
         <Tabs defaultValue="all">
           <TabsList className="grid w-full grid-cols-4 md:w-fit">
             <TabsTrigger value="all">All</TabsTrigger>

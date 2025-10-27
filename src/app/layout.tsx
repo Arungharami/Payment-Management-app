@@ -10,8 +10,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'LiquorPay',
-  description: 'Vendor Bill Payment Hub for Liquor Stores',
+  title: 'StorePay',
+  description: 'Smart Store Payment Management',
 };
 
 export default function RootLayout({

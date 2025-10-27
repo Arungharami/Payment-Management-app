@@ -2,14 +2,15 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Package, History, User, Shield } from 'lucide-react';
+import { Home, Package, History, User, Shield, Store } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Separator } from '../ui/separator';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
+  { href: '/stores', label: 'Stores', icon: Store },
   { href: '/vendors', label: 'Vendors', icon: Package },
-  { href: '/history', label: 'History', icon: History },
+  { href: '/history', label: 'Payments', icon: History },
   { href: '/profile', label: 'Profile', icon: User },
 ];
 
@@ -21,7 +22,7 @@ export function SidebarNav() {
       <div className="flex h-16 items-center border-b px-6">
         <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
           <Shield className="h-6 w-6 text-primary" />
-          <span>LiquorPay</span>
+          <span>StorePay</span>
         </Link>
       </div>
       <div className="flex-1 overflow-auto py-4">
@@ -46,7 +47,7 @@ export function SidebarNav() {
       </div>
       <Separator/>
        <div className="p-4">
-        <div className="text-xs text-muted-foreground">© 2024 LiquorPay Inc.</div>
+        <div className="text-xs text-muted-foreground">© 2024 StorePay Inc.</div>
        </div>
     </aside>
   );

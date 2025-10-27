@@ -5,7 +5,6 @@ import {
   FileDown,
 } from 'lucide-react';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -37,13 +36,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { vendors } from '@/lib/data';
+import { stores } from '@/lib/data';
 import Image from 'next/image';
 import { AddVendorForm } from './add-vendor-form';
 import { useState } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
 
 export function VendorTable() {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedStoreId, setSelectedStoreId] = useState(stores[0].id);
+
+  const selectedStore = stores.find(s => s.id === selectedStoreId);
+  const vendors = selectedStore?.vendors || [];
 
   return (
     <Card>
@@ -52,10 +62,20 @@ export function VendorTable() {
           <div>
             <CardTitle>Your Vendors</CardTitle>
             <CardDescription>
-              All your registered vendors are listed here.
+              Manage vendors for your selected store.
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
+            <Select value={selectedStoreId} onValueChange={setSelectedStoreId}>
+                <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select a store" />
+                </SelectTrigger>
+                <SelectContent>
+                    {stores.map(store => (
+                        <SelectItem key={store.id} value={store.id}>{store.name}</SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
             <Button size="sm" variant="outline">
               <FileDown className="h-4 w-4 mr-2" />
               Export

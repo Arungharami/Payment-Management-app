@@ -1,6 +1,6 @@
 import { Header } from '@/components/layout/header';
 import { Button } from '@/components/ui/button';
-import { bills, paymentHistory } from '@/lib/data';
+import { allBills, paymentHistory } from '@/lib/data';
 import { DollarSign, FileText, ArrowRight } from 'lucide-react';
 import { VendorBillCard } from '@/components/dashboard/vendor-bill-card';
 import { StatsCards } from '@/components/dashboard/stats-cards';
@@ -19,8 +19,8 @@ import {
 import Image from 'next/image';
 
 export default function DashboardPage() {
-  const outstandingBills = bills.filter((bill) => bill.status !== 'paid');
-  const recentPayments = paymentHistory.slice(0, 3);
+  const outstandingBills = allBills.filter((bill) => bill.status !== 'paid');
+  const recentPayments = paymentHistory.slice(0, 5);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function DashboardPage() {
       <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
         <PageHeader
           title="Welcome Back, John!"
-          description="Here's a summary of your vendor accounts."
+          description="Here's a summary of your accounts across all stores."
         />
 
         <StatsCards />
@@ -36,11 +36,11 @@ export default function DashboardPage() {
         <section>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">Outstanding Bills</h2>
-            <Button variant="outline" size="sm">Pay All</Button>
+            <Button>Pay All</Button>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {outstandingBills.map((bill) => (
-              <VendorBillCard key={bill.id} bill={bill} />
+              <VendorBillCard key={`${bill.store.id}-${bill.id}`} bill={bill} />
             ))}
           </div>
         </section>
@@ -60,6 +60,7 @@ export default function DashboardPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Vendor</TableHead>
+                    <TableHead className="hidden sm:table-cell">Store</TableHead>
                     <TableHead className="text-right">Amount</TableHead>
                     <TableHead className="hidden sm:table-cell text-right">Date</TableHead>
                     <TableHead className="text-right">Status</TableHead>
@@ -71,15 +72,18 @@ export default function DashboardPage() {
                       <TableCell>
                         <div className="flex items-center gap-3">
                            <Image
-                            src={payment.vendor.logo.imageUrl}
-                            alt={payment.vendor.name}
+                            src={payment.vendorLogo.imageUrl}
+                            alt={payment.vendorName}
                             width={32}
                             height={32}
                             className="rounded-full object-cover"
-                            data-ai-hint={payment.vendor.logo.imageHint}
+                            data-ai-hint={payment.vendorLogo.imageHint}
                           />
-                          <span className="font-medium">{payment.vendor.name}</span>
+                          <span className="font-medium">{payment.vendorName}</span>
                         </div>
+                      </TableCell>
+                       <TableCell className="hidden sm:table-cell text-muted-foreground">
+                        {payment.storeName}
                       </TableCell>
                       <TableCell className="text-right font-medium">
                         ${payment.amount.toFixed(2)}
@@ -92,7 +96,7 @@ export default function DashboardPage() {
                           variant={
                             payment.status === 'Completed' ? 'default' : 'destructive'
                           }
-                          className={payment.status === 'Completed' ? 'bg-accent text-accent-foreground' : ''}
+                           className={payment.status === 'Completed' ? 'bg-green-100 text-green-800' : ''}
                         >
                           {payment.status}
                         </Badge>

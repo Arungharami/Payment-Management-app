@@ -1,23 +1,25 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { bills } from '@/lib/data';
+import { allBills } from '@/lib/data';
 import { DollarSign, FileText, CalendarClock } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 
 export function StatsCards() {
-  const totalOutstanding = bills.reduce((acc, bill) => {
+  const totalOutstanding = allBills.reduce((acc, bill) => {
     if (bill.status !== 'paid') {
       return acc + bill.amount;
     }
     return acc;
   }, 0);
 
-  const upcomingBills = bills.filter(
+  const upcomingBills = allBills.filter(
     (bill) => bill.status === 'due' && parseISO(bill.dueDate) > new Date()
   );
 
   const nextDueDate = upcomingBills.length > 0 
     ? upcomingBills.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())[0].dueDate
     : null;
+    
+  const nextDueBill = nextDueDate ? allBills.find(b => b.dueDate === nextDueDate) : null;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -30,7 +32,7 @@ export function StatsCards() {
           <div className="text-2xl font-bold">
             ${totalOutstanding.toLocaleString('en-US', { minimumFractionDigits: 2 })}
           </div>
-          <p className="text-xs text-muted-foreground">Across all vendors</p>
+          <p className="text-xs text-muted-foreground">Across all stores</p>
         </CardContent>
       </Card>
       <Card>
@@ -53,7 +55,7 @@ export function StatsCards() {
             {nextDueDate ? format(parseISO(nextDueDate), 'MMM dd, yyyy') : 'N/A'}
           </div>
           <p className="text-xs text-muted-foreground">
-            {nextDueDate ? `for ${bills.find(b => b.dueDate === nextDueDate)?.vendor.name}` : 'No upcoming payments'}
+            {nextDueBill ? `for ${nextDueBill.vendor.name} (${nextDueBill.store.name})` : 'No upcoming payments'}
           </p>
         </CardContent>
       </Card>

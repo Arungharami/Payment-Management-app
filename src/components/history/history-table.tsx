@@ -1,3 +1,5 @@
+'use client'
+
 import {
   MoreHorizontal,
   FileDown,
@@ -8,10 +10,6 @@ import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
 import {
   DropdownMenu,
@@ -45,8 +43,7 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
 
   return (
     <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between gap-4">
+       <div className="flex items-center justify-between gap-4 p-4 border-b">
           <div className="relative flex-1">
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
              <Input placeholder="Search payments..." className="pl-10" />
@@ -56,12 +53,12 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
             Export
           </Button>
         </div>
-      </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Vendor</TableHead>
+              <TableHead className="hidden md:table-cell">Store</TableHead>
               <TableHead className="hidden md:table-cell">Date</TableHead>
               <TableHead className="hidden md:table-cell">Status</TableHead>
               <TableHead className="text-right">Amount</TableHead>
@@ -76,21 +73,22 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-3">
                     <Image
-                      src={payment.vendor.logo.imageUrl}
-                      alt={payment.vendor.name}
+                      src={payment.vendorLogo.imageUrl}
+                      alt={payment.vendorName}
                       width={32}
                       height={32}
                       className="rounded-full object-cover"
-                      data-ai-hint={payment.vendor.logo.imageHint}
+                      data-ai-hint={payment.vendorLogo.imageHint}
                     />
-                    {payment.vendor.name}
+                    {payment.vendorName}
                   </div>
                 </TableCell>
+                <TableCell className="hidden md:table-cell">{payment.storeName}</TableCell>
                 <TableCell className="hidden md:table-cell">{payment.date}</TableCell>
                 <TableCell className="hidden md:table-cell">
                   <Badge variant={
                     payment.status === 'Completed' ? 'default' : payment.status === 'Failed' ? 'destructive' : 'secondary'
-                  } className={payment.status === 'Completed' ? 'bg-accent text-accent-foreground' : ''}>
+                  } className={payment.status === 'Completed' ? 'bg-green-100 text-green-800' : ''}>
                     {payment.status}
                   </Badge>
                 </TableCell>
@@ -115,7 +113,7 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
           </TableBody>
         </Table>
       </CardContent>
-      <CardFooter>
+      <div className="flex items-center justify-between p-4 border-t">
         <div className="text-xs text-muted-foreground">
           Showing <strong>1-10</strong> of <strong>{filteredHistory.length}</strong> payments
         </div>
@@ -129,7 +127,7 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-      </CardFooter>
+      </div>
     </Card>
   );
 }

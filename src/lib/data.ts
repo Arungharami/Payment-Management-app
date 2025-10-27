@@ -4,31 +4,41 @@ import { PlaceHolderImages } from './placeholder-images';
 const getImage = (id: string): ImagePlaceholder =>
   PlaceHolderImages.find((img) => img.id === id) ?? PlaceHolderImages[0];
 
+export type Store = {
+  id: string;
+  name: string;
+  address: string;
+  vendors: Vendor[];
+};
+
 export type Vendor = {
   id: string;
   name: string;
   logo: ImagePlaceholder;
   accountNumber: string;
   paymentUrl?: string;
+  bills: Bill[];
 };
 
 export type Bill = {
   id: string;
-  vendor: Vendor;
   amount: number;
   dueDate: string;
   status: 'due' | 'paid' | 'overdue';
+  invoiceUrl?: string;
 };
 
 export type Payment = {
   id: string;
-  vendor: Vendor;
+  vendorName: string;
+  vendorLogo: ImagePlaceholder;
+  storeName: string;
   amount: number;
   date: string;
   status: 'Completed' | 'Pending' | 'Failed';
 };
 
-export const vendors: Vendor[] = [
+const vendors: Omit<Vendor, 'bills'>[] = [
   {
     id: 'pepsi',
     name: 'PepsiCo',
@@ -64,86 +74,85 @@ export const vendors: Vendor[] = [
   },
 ];
 
-export const bills: Bill[] = [
-  {
-    id: 'bill-001',
-    vendor: vendors[0],
-    amount: 542.5,
-    dueDate: '2024-08-15',
-    status: 'due',
-  },
-  {
-    id: 'bill-002',
-    vendor: vendors[2],
-    amount: 1875.0,
-    dueDate: '2024-08-10',
-    status: 'overdue',
-  },
-  {
-    id: 'bill-003',
-    vendor: vendors[1],
-    amount: 480.25,
-    dueDate: '2024-08-20',
-    status: 'due',
-  },
-  {
-    id: 'bill-004',
-    vendor: vendors[3],
-    amount: 3250.75,
-    dueDate: '2024-08-22',
-    status: 'due',
-  },
+export const stores: Store[] = [
+    {
+        id: 'store-1',
+        name: 'Downtown Liquor',
+        address: '123 Main St, Anytown USA',
+        vendors: [
+            { 
+                ...vendors[0], 
+                bills: [
+                    { id: 'bill-001', amount: 542.50, dueDate: '2024-08-15', status: 'due' },
+                    { id: 'bill-005', amount: 530.10, dueDate: '2024-07-15', status: 'paid' }
+                ] 
+            },
+            { 
+                ...vendors[2], 
+                bills: [
+                    { id: 'bill-002', amount: 1875.00, dueDate: '2024-08-10', status: 'overdue' },
+                     { id: 'bill-006', amount: 1850.00, dueDate: '2024-07-10', status: 'paid' }
+                ] 
+            }
+        ]
+    },
+    {
+        id: 'store-2',
+        name: 'The Corner Sip',
+        address: '456 Oak Ave, Sometown USA',
+        vendors: [
+            { 
+                ...vendors[1], 
+                bills: [
+                    { id: 'bill-003', amount: 480.25, dueDate: '2024-08-20', status: 'due' },
+                     { id: 'bill-007', amount: 450.00, dueDate: '2024-07-20', status: 'paid' }
+                ] 
+            },
+            { 
+                ...vendors[3], 
+                bills: [
+                    { id: 'bill-004', amount: 3250.75, dueDate: '2024-08-22', status: 'due' },
+                    { id: 'bill-008', amount: 3200.00, dueDate: '2024-07-22', status: 'paid' }
+                ] 
+            },
+            {
+                ...vendors[4],
+                bills: [
+                     { id: 'bill-009', amount: 250.00, dueDate: '2024-07-28', status: 'paid' }
+                ]
+            }
+        ]
+    }
 ];
 
-export const paymentHistory: Payment[] = [
-  {
-    id: 'pay-001',
-    vendor: vendors[4],
-    amount: 250.0,
-    date: '2024-07-28',
-    status: 'Completed',
-  },
-  {
-    id: 'pay-002',
-    vendor: vendors[0],
-    amount: 530.1,
-    date: '2024-07-15',
-    status: 'Completed',
-  },
-  {
-    id: 'pay-003',
-    vendor: vendors[2],
-    amount: 1850.0,
-    date: '2024-07-10',
-    status: 'Completed',
-  },
-  {
-    id: 'pay-004',
-    vendor: vendors[1],
-    amount: 450.0,
-    date: '2024-07-20',
-    status: 'Completed',
-  },
-    {
-    id: 'pay-005',
-    vendor: vendors[3],
-    amount: 3200.0,
-    date: '2024-07-22',
-    status: 'Completed',
-  },
-   {
+// Computed data for easier access
+export const allBills = stores.flatMap(s => s.vendors.flatMap(v => v.bills.map(b => ({...b, vendor: v, store: s}))));
+
+export const paymentHistory: Payment[] = allBills.filter(b => b.status === 'paid').map(b => ({
+    id: `pay-${b.id}`,
+    vendorName: b.vendor.name,
+    vendorLogo: b.vendor.logo,
+    storeName: b.store.name,
+    amount: b.amount,
+    date: b.dueDate,
+    status: 'Completed'
+})).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Adding a failed payment for demonstration
+paymentHistory.push({
     id: 'pay-006',
-    vendor: { id: 'fraud', name: "Fraudulent Vendor", logo: getImage('pepsi'), accountNumber: "FV-000"},
+    vendorName: "Fraudulent Vendor",
+    vendorLogo: getImage('pepsi'),
+    storeName: 'Downtown Liquor',
     amount: 5000.0,
     date: '2024-06-15',
-    status: 'Failed',
-  },
-];
+    status: 'Failed'
+});
+
 
 export const userProfile = {
   name: 'John Doe',
-  email: 'john.doe@liquorstore.com',
-  storeName: 'The Corner Sip',
+  email: 'john.doe@example.com',
   avatar: getImage('user-avatar'),
 };
 

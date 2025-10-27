@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { userProfile, paymentMethods, notificationSettings } from '@/lib/data';
 import { Banknote, CreditCard, PlusCircle } from 'lucide-react';
@@ -25,7 +24,7 @@ export default function ProfilePage() {
             <Card>
               <CardHeader>
                 <CardTitle>Profile Information</CardTitle>
-                <CardDescription>Update your personal and store details.</CardDescription>
+                <CardDescription>Update your personal details.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -44,10 +43,6 @@ export default function ProfilePage() {
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" type="email" defaultValue={userProfile.email} />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="storeName">Store Name</Label>
-                  <Input id="storeName" defaultValue={userProfile.storeName} />
                 </div>
               </CardContent>
             </Card>
@@ -101,11 +96,13 @@ export default function ProfilePage() {
             
             <Card>
               <CardHeader>
-                <CardTitle>Reports</CardTitle>
-                <CardDescription>Export your spending data.</CardDescription>
+                <CardTitle>Access Control</CardTitle>
+                <CardDescription>Manage employee access.</CardDescription>
               </CardHeader>
               <CardContent>
-                 <Button className="w-full">Export Monthly Report</Button>
+                 <Button variant="outline" className="w-full">
+                    <PlusCircle className="mr-2 h-4 w-4" /> Invite Employee
+                </Button>
               </CardContent>
             </Card>
           </div>

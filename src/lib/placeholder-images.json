@@ -9,7 +9,7 @@
     {
       "id": "coca-cola",
       "description": "Coca-Cola logo",
-      "imageUrl": "https://images.unsplash.com/photo-1643585222130-4855704b8a5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxDb2NhLUNvbGElMjBsb2dvfGVufDB8fHx8MTc2MTUwNzgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1698953683003-d9803499edd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxDb2NhLUNvbGElMjBsb2dvfGVufDB8fHx8MTc2MTYwNDcwNXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Coca-Cola logo"
     },
     {
@@ -21,19 +21,19 @@
     {
       "id": "southern-glazers",
       "description": "Southern Glazer's logo",
-      "imageUrl": "https://images.unsplash.com/photo-1751263317332-7368f7e98a91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxTb3V0aGVybiUyMEdsYXplciUyN3MlMjBsb2dvfGVufDB8fHx8MTc2MTUwNzgwNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Southern Glazer's logo"
+      "imageUrl": "https://images.unsplash.com/photo-1693179039649-e3ec3736b55c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkaXN0aWxsZXJ5JTIwbG9nb3xlbnwwfHx8fDE3NjE2MDQ3MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "distillery logo"
     },
     {
       "id": "breakthru",
       "description": "Breakthru Beverage logo",
-      "imageUrl": "https://images.unsplash.com/photo-1573159312725-4dab0e8046f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxCcmVha3RocnUlMjBCZXZlcmFnZSUyMGxvZ298ZW58MHx8fHwxNzYxNTA3ODA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Breakthru Beverage logo"
+      "imageUrl": "https://images.unsplash.com/photo-1700887938966-01f0450aee8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiZXZlcmFnZSUyMGxvZ298ZW58MHx8fHwxNzYxNjA0NzA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "beverage logo"
     },
     {
       "id": "user-avatar",
       "description": "User avatar",
-      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjE0Mzg3NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYxNTQ1Mzk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
     }
   ]

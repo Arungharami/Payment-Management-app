@@ -21,6 +21,8 @@ import type { FormState } from '@/app/actions/vendor';
 import { addVendorAction } from '@/app/actions/vendor';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 import { AlertCircle } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { stores } from '@/lib/data';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -46,7 +48,6 @@ export function AddVendorForm({ setDialogOpen }: { setDialogOpen: (open: boolean
         toast({
           title: 'Success',
           description: state.message,
-          variant: 'default'
         });
         setDialogOpen(false);
         formRef.current?.reset();
@@ -74,6 +75,19 @@ export function AddVendorForm({ setDialogOpen }: { setDialogOpen: (open: boolean
   return (
     <>
       <form ref={formRef} action={formAction} className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="storeId">Store</Label>
+          <Select name="storeId">
+            <SelectTrigger>
+              <SelectValue placeholder="Select a store" />
+            </SelectTrigger>
+            <SelectContent>
+              {stores.map(store => (
+                <SelectItem key={store.id} value={store.id}>{store.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         <div className="space-y-2">
           <Label htmlFor="vendorName">Vendor Name</Label>
           <Input id="vendorName" name="vendorName" placeholder="e.g., PepsiCo" required />

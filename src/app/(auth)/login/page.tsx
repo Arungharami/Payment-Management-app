@@ -40,7 +40,7 @@ export default function LoginPage() {
       <div className="text-center">
         <div className="flex justify-center items-center gap-2 mb-4">
           <Shield className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold font-headline text-foreground">LiquorPay</h1>
+          <h1 className="text-3xl font-bold font-headline text-foreground">StorePay</h1>
         </div>
         <h2 className="text-2xl font-semibold tracking-tight">Welcome Back</h2>
         <p className="text-sm text-muted-foreground mt-2">
@@ -53,7 +53,7 @@ export default function LoginPage() {
           <Label htmlFor="email">Email</Label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input id="email" type="email" placeholder="owner@liquorstore.com" required className="pl-10"/>
+            <Input id="email" type="email" placeholder="owner@store.com" required className="pl-10"/>
           </div>
         </div>
         <div className="grid gap-2">
@@ -63,13 +63,12 @@ export default function LoginPage() {
             <Input id="password" type="password" placeholder="••••••••" required className="pl-10"/>
           </div>
         </div>
-        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+        <Button type="submit" className="w-full">
           Sign In
         </Button>
       </form>
 
-      <div className="relative">
-        <Separator className="my-4" />
+      <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>

@@ -2,10 +2,15 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import type { Bill } from '@/lib/data';
+import type { Bill, Vendor, Store } from '@/lib/data';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
-export function VendorBillCard({ bill }: { bill: Bill }) {
+type EnrichedBill = Bill & {
+    vendor: Vendor;
+    store: Store;
+}
+
+export function VendorBillCard({ bill }: { bill: EnrichedBill }) {
   const dueDate = parseISO(bill.dueDate);
   const isOverdue = bill.status === 'overdue';
   const distanceToNow = formatDistanceToNow(dueDate, { addSuffix: true });
@@ -24,7 +29,7 @@ export function VendorBillCard({ bill }: { bill: Bill }) {
         <div className="grid gap-1">
           <p className="font-semibold">{bill.vendor.name}</p>
           <p className="text-sm text-muted-foreground">
-            {bill.vendor.accountNumber}
+            {bill.store.name}
           </p>
         </div>
       </CardHeader>
@@ -42,7 +47,7 @@ export function VendorBillCard({ bill }: { bill: Bill }) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button className="w-full">
           Pay Now
         </Button>
       </CardFooter>
