@@ -26,17 +26,18 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination';
-
 import { paymentHistory } from '@/lib/data';
 import Image from 'next/image';
 import { Input } from '../ui/input';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'Failed' }) {
   const filteredHistory = filter ? paymentHistory.filter(p => p.status === filter) : paymentHistory;
@@ -121,6 +122,20 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious href="#" />
+              </PaginationItem>
+               <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" isActive>
+                  2
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
               </PaginationItem>
               <PaginationItem>
                 <PaginationNext href="#" />

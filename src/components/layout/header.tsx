@@ -16,14 +16,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import Link from 'next/link';
 import { userProfile } from '@/lib/data';
+import Link from 'next/link';
 
 export function Header({ title }: { title: string }) {
-    const userAvatar = PlaceHolderImages.find(p => p.id === 'user-avatar');
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between border-b px-4 md:px-6 bg-card/80 backdrop-blur-sm">
+    <header className="flex h-16 shrink-0 items-center justify-between border-b px-4 md:px-6 bg-card">
       <h1 className="text-lg font-semibold md:text-xl">{title}</h1>
       <div className="flex items-center gap-2">
         <Button variant="ghost" size="icon" className="rounded-full">
@@ -34,7 +32,7 @@ export function Header({ title }: { title: string }) {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-9 w-9 rounded-full">
               <Avatar className="h-9 w-9">
-                <AvatarImage src={userAvatar?.imageUrl} alt="@shadcn" data-ai-hint={userAvatar?.imageHint} />
+                <AvatarImage src={userProfile.avatar.imageUrl} alt={userProfile.name} data-ai-hint={userProfile.avatar.imageHint} />
                 <AvatarFallback>{userProfile.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
               </Avatar>
             </Button>

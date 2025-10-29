@@ -1,5 +1,3 @@
-// This file implements a Genkit flow for fraud detection to prevent payments to unusual or potentially fraudulent vendors.
-
 'use server';
 
 /**
@@ -25,7 +23,7 @@ export type FraudDetectionInput = z.infer<typeof FraudDetectionInputSchema>;
 
 const FraudDetectionOutputSchema = z.object({
   isFraudulent: z.boolean().describe('Whether the payment is potentially fraudulent.'),
-  fraudReason: z.string().describe('The reason for the fraud assessment.'),
+  fraudReason: z.string().describe('A concise, one-sentence reason for the fraud assessment.'),
 });
 
 export type FraudDetectionOutput = z.infer<typeof FraudDetectionOutputSchema>;
@@ -38,21 +36,21 @@ const detectFraudPrompt = ai.definePrompt({
   name: 'detectFraudPrompt',
   input: {schema: FraudDetectionInputSchema},
   output: {schema: FraudDetectionOutputSchema},
-  prompt: `You are an expert in fraud detection, specializing in identifying potentially fraudulent vendor payments for liquor stores.
+  prompt: `You are an expert fraud detection agent for a B2B payment platform. Your task is to assess if a new vendor payment is potentially fraudulent based on the provided data.
 
-  Given the vendor's name, payment amount, vendor history, and account age, assess the likelihood of fraud.
+Analyze the following payment details:
+- Vendor Name: {{{vendorName}}}
+- Payment Amount: {{{paymentAmount}}}
+- Vendor Payment History: {{{vendorHistory}}}
+- Vendor Account Age (days): {{{accountAge}}}
 
-  Vendor Name: {{{vendorName}}}
-  Payment Amount: {{{paymentAmount}}}
-  Vendor Payment History: {{{vendorHistory}}}
-  Vendor Account Age (days): {{{accountAge}}}
+A payment may be fraudulent if:
+- The payment amount is unusually high for a new vendor.
+- The vendor account is very new (e.g., less than 30 days old).
+- There is no established payment history.
+- The vendor name seems suspicious or generic.
 
-  Consider factors such as unusually high payment amounts, lack of payment history, and recent account creation.
-
-  Determine if the payment is potentially fraudulent and provide a clear reason for your assessment. Return in JSON format.
-
-  { {{#if isFraudulent}} \"isFraudulent\": true, {{else}} \"isFraudulent\": false, {{/if}} \"fraudReason\": \"explanation here\" }
-  `,
+Based on your analysis, determine if the transaction is fraudulent. Respond with a JSON object containing 'isFraudulent' (boolean) and a concise, one-sentence 'fraudReason' (string) explaining your decision.`,
 });
 
 const detectFraudFlow = ai.defineFlow(

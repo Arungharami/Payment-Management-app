@@ -54,8 +54,8 @@ export function StatsCards() {
           <div className="text-2xl font-bold">
             {nextDueDate ? format(parseISO(nextDueDate), 'MMM dd, yyyy') : 'N/A'}
           </div>
-          <p className="text-xs text-muted-foreground">
-            {nextDueBill ? `for ${nextDueBill.vendor.name} (${nextDueBill.store.name})` : 'No upcoming payments'}
+          <p className="text-xs text-muted-foreground truncate">
+            {nextDueBill ? `For ${nextDueBill.vendor.name} (${nextDueBill.store.name})` : 'No upcoming payments'}
           </p>
         </CardContent>
       </Card>
