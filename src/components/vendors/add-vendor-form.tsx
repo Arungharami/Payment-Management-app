@@ -16,11 +16,10 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import type { FormState } from '@/app/actions/vendor';
-import { addVendorAction, AddVendorSchema, type AddVendorInput } from '@/app/actions/vendor';
+import { addVendorAction } from '@/app/actions/vendor';
+import { AddVendorSchema, type AddVendorInput, type FormState } from '@/lib/schemas/vendor';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 import { AlertCircle } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
