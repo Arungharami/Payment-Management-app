@@ -117,7 +117,7 @@ export function HistoryTable({ filter }: { filter?: 'Completed' | 'Pending' | 'F
         <div className="text-xs text-muted-foreground">
           Showing <strong>1-10</strong> of <strong>{filteredHistory.length}</strong> payments
         </div>
-         <Pagination className="ml-auto">
+         <Pagination>
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious href="#" />
