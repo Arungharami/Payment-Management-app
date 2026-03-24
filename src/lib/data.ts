@@ -128,7 +128,7 @@ export const stores: Store[] = [
 // Computed data for easier access
 export const allBills = stores.flatMap(s => s.vendors.flatMap(v => v.bills.map(b => ({...b, vendor: v, store: s}))));
 
-export const paymentHistory: Payment[] = allBills.filter(b => b.status === 'paid').map(b => ({
+export const paymentHistory: Payment[] = allBills.filter(b => b.status === 'paid').map((b): Payment => ({
     id: `pay-${b.id}`,
     vendorName: b.vendor.name,
     vendorLogo: b.vendor.logo,

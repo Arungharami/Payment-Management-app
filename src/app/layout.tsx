@@ -1,17 +1,11 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins',
-});
-
 export const metadata: Metadata = {
-  title: 'StorePay',
-  description: 'Smart Store Payment Management',
+  title: 'LedgerFlow',
+  description: 'Modern vendor payment management for retail, wholesale, and multi-location businesses.',
 };
 
 export default function RootLayout({
@@ -21,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} font-body antialiased`}>
+      <body className="font-body">
         {children}
         <Toaster />
       </body>
